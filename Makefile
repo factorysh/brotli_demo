@@ -1,6 +1,8 @@
 
 demo: build
-	cd www && brotli -f *.html && brotli -f *.svg
+	cd www \
+		&& brotli -f *.html && brotli -f *.svg \
+		&& gzip -kf *.html && gzip -kf *.svg
 	docker run --rm \
 		-v `pwd`/www:/var/www/html:ro \
 		-v `pwd`/lua:/opt/brotli:ro \

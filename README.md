@@ -8,11 +8,11 @@ Demo
 
 On Mac:
 
-    brew install brotli zopfli
+    brew install brotli zopfli zstd
 
 On Debian/Ubtuntu:
 
-    apt-get install brotli zopfli
+    apt-get install brotli zopfli zstd
 
 Launch the demo:
 

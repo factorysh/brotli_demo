@@ -1,2 +1,4 @@
 www/*.br
 www/*.gz
+www/*.zst
+www/zero-weight-dict

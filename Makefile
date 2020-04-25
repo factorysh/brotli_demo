@@ -8,11 +8,16 @@ demo: build compress
 build:
 	docker build -t brotli .
 
-compress:
+www/zero-weight-dict:
+	cd www && curl -O https://github.com/facebook/zstd/raw/dev/tests/dict-files/zero-weight-dict
+
+compress: www/zero-weight-dict
+	# You should train your own dict
+	#  zstd --train *.{html,svg} -o my_dico
 	cd www \
-		&& brotli -f *.html && brotli -f *.svg \
-		&& zopfli -f *.html && zopfli -f *.svg
+		&& brotli -f *.{html,svg} \
+		&& zopfli -f *.{html,svg} \
+		&& zstd -D zero-weight-dict -f -19 *.{html,svg}
 
 clean:
-	rm -f www/*.gz
-	rm -f www/*.br
+	rm -f www/*.{gz,br,zst}

@@ -7,8 +7,7 @@ RUN set -eux \
                 libnginx-mod-http-lua \
                 lua-nginx-string \
     &&  apt-get clean \
-    &&  rm -rf /var/lib/apt/lists/* \
-    && printf '%s\n%s\n' "include /etc/nginx/modules-enabled/*.conf;" "$(cat /etc/nginx/nginx.conf)" > /etc/nginx/nginx.conf
+    &&  rm -rf /var/lib/apt/lists/*
 
 USER www-data
 

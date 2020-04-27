@@ -6,6 +6,9 @@ demo: build compress
 		-p 8000:8000 \
 		brotli
 
+pull:
+	docker pull bearstech/nginx:1.14
+
 build:
 	docker build -t brotli .
 

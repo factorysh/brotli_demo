@@ -1,3 +1,4 @@
+.PHONY: tests
 
 demo: build compress
 	docker run --rm \
@@ -18,6 +19,14 @@ compress: www/zero-weight-dict
 		&& brotli -f *.{html,svg} \
 		&& zopfli -f *.{html,svg} \
 		&& zstd -D zero-weight-dict -f -19 *.{html,svg}
+
+venv/bin/pytest:
+	python3 -m venv venv
+	./venv/bin/pip install -U pip
+	./venv/bin/pip install -r requirements.txt
+
+test: venv/bin/pytest
+	venv/bin/pytest tests
 
 clean:
 	rm -f www/*.{gz,br,zst}
